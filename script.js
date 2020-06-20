@@ -59,7 +59,7 @@ function currentWeather(userInput) {
         var lat = response.coord.lat;
         var lon = response.coord.lon;
         var icon = response.weather[0].icon;
-        var UVindexURL = "https://api.openweathermap.org/data/2.5/uvi?" + "lat=" + lat + "&" + "lon=" + lon + "&APPID=123babda3bc150d180af748af99ad173";
+        var UVindexURL = "https://api.openweathermap.org/data/2.5/uvi?" + "lat=" + lat + "&" + "lon=" + lon + "&APPID=c8b8d19606c4436d23efe2aa4823f576";
         var newImgMain = $("<img>").attr("class", "card-img-top").attr("src", "https://openweathermap.org/img/wn/" + icon + "@2x.png");
         mainIcon.append(newImgMain);
         cityResultText.text(cityInfo + ", " + country + " " + today);
