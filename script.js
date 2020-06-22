@@ -192,8 +192,9 @@ $(".btn").on("click", function (event) {
 
 document.querySelector('input').addEventListener("keydown", function (event){
     if (event.keyCode === 13) {
+        var userInput = $("#searchInput").val().trim().toLowerCase();
     event.preventDefault();
-    currentWeather(userInput);
+     currentWeather(userInput);
     forecast(userInput);
     storeData();
     lastSearch();
