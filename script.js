@@ -1,22 +1,22 @@
-var cityResultText = $("#cityResult");
+var textforcity = $("#cityResult");
 
-var tempResultText = $("#tempResult");
+var textfortemp = $("#tempResult");
 
 var humidityResult = $("#humidityResult");
 
-var windResultText = $("#windResult");
+var textforwind = $("#windResult");
 
 var mainIcon = $("#mainIcon");
 
 var rowCards = $("#rowCards");
 
-var dayForecast = $("#row5day");
+var fivedayfc = $("#row5day");
 
 var cardDisplay = $("#cardDisplay");
 
-var UVIndexText = $("#UVIndexResult");
+var textforUV = $("#UVIndexResult");
 
-var buttonList = $("#buttonsList");
+var listofbuttons = $("#buttonsList");
 
 var forecastDate = {};
 
@@ -62,10 +62,10 @@ function currentWeather(userInput) {
         var UVindexURL = "https://api.openweathermap.org/data/2.5/uvi?" + "lat=" + lat + "&" + "lon=" + lon + "&APPID=c8b8d19606c4436d23efe2aa4823f576";
         var newImgMain = $("<img>").attr("class", "card-img-top").attr("src", "https://openweathermap.org/img/wn/" + icon + "@2x.png");
         mainIcon.append(newImgMain);
-        cityResultText.text(cityInfo + ", " + country + " " + today);
-        tempResultText.text("Temperature: " + temp + " ºC");
+        textforcity.text(cityInfo + ", " + country + " " + today);
+        textfortemp.text("Temperature: " + temp + " ºC");
         humidityResult.text("Humidity: " + humidity + " %");
-        windResultText.text("Wind Speed: " + wind + " MPH");
+        textforwind.text("Wind Speed: " + wind + " MPH");
         $.ajax({
             url: UVindexURL,
             method: "GET"
@@ -81,17 +81,17 @@ function currentWeather(userInput) {
             } else {
                 colorUV = "red";
             }
-            UVIndexText.empty();
+            textforUV.empty();
             var UVResultText = $("<p>").attr("class", "card-text").text("UV Index: ");
             UVResultText.append($("<span>").attr("class", "uvindex").attr("style", ("background-color: " + colorUV)).text(UV))
-            UVIndexText.append(UVResultText);
+            textforUV.append(UVResultText);
             cardDisplay.attr("style", "display: flex; width: 98%");
         })
     })
 }
 
 function forecast(userInput) {
-    dayForecast.empty();
+    fivedayfc.empty();
     rowCards.empty();
     var fore5 = $("<h2>").attr("class", "forecast").text("5-Day Forecast: ");
     var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userInput + "&units=metric&APPID=123babda3bc150d180af748af99ad173";
@@ -128,7 +128,7 @@ function forecast(userInput) {
             var newPHum = $("<p>").attr("class", "card-text").text("Humidity: " + forecastHum[i] + " %");
             newCardBody.append(newPHum);
 
-            dayForecast.append(fore5);
+            fivedayfc.append(fore5);
         };
     })
 
@@ -156,12 +156,12 @@ function storeData(userInput) {
 }
 
 function lastSearch() {
-    buttonList.empty()
+    listofbuttons.empty()
     for (var i = 0; i < citiesArray.length; i++) {
         var newButton = $("<button>").attr("type", "button").attr("class", "savedBtn btn btn-secondary btn-lg btn-block");
         newButton.attr("data-name", citiesArray[i])
         newButton.text(citiesArray[i]);
-        buttonList.prepend(newButton);
+        listofbuttons.prepend(newButton);
     }
     $(".savedBtn").on("click", function (event) {
         event.preventDefault();
