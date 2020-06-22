@@ -176,7 +176,11 @@ $(".btn").on("click", function (event) {
     event.preventDefault();
     if ($("#searchInput").val() === "") {
         alert("Please type a userInput to know the current weather");
-    } else
+    } 
+    // else if ($("#searchInput").val().trim().toLowerCase() !== cityInfo){
+    //     alert("please enter a real city")
+    // }
+    else
         var userInput = $("#searchInput").val().trim().toLowerCase();
     currentWeather(userInput);
     forecast(userInput);
@@ -186,3 +190,15 @@ $(".btn").on("click", function (event) {
 
 })
 
+document.querySelector('input').addEventListener("keydown", function (event){
+    if (event.keyCode === 13) {
+    event.preventDefault();
+    currentWeather(userInput);
+    forecast(userInput);
+    storeData();
+    lastSearch();
+    $("#searchInput").val("");
+    
+};
+
+});
